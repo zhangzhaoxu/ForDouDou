@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ForDouDou</title>
+    <script src="bower_components/jquery/jquery-2.1.4/dist/jquery.min.js"></script>
+    <script src="easeljs-NEXT.combined.js"></script>
+    <script src="index.js"></script>
+    <!--<script>-->
+        <!--function showLove(){-->
+            <!--this.__init();-->
+        <!--}-->
+
+        <!--var p = showLove.prototype;-->
+
+        <!--p.__init = function () {-->
+            <!--this.__initDatas();-->
+            <!--this.__initImages();-->
+        <!--};-->
+
+        <!--p.__initDatas = function () {-->
+            <!--this.canvas = document.getElementById("canvas");-->
+            <!--this.canvas.width = window.innerWidth;-->
+            <!--this.canvas.height = window.innerHeight;-->
+            <!--this.stage = new createjs.Stage(this.canvas);-->
+            <!--this.imageContainers = [];-->
+            <!--this.imageIndex = 0;-->
+            <!--this.index = 0;-->
+        <!--};-->
+
+        <!--p.__initImages = function () {-->
+            <!--var _this = this;-->
+            <!--for(var i = 0; i < 10 ; i++){-->
+                <!--var image = new Image();-->
+                <!--image.src = "1.jpg";-->
+                <!--_this.imageContainers.push(image);-->
+                <!--image.addEventListener('load',_this._handleImageLoad.bind(_this));-->
+            <!--}-->
+        <!--};-->
+
+        <!--p._initHeart = function () {-->
+            <!--var _this = this;-->
+            <!--var heart = new createjs.Shape();-->
+            <!--heart.graphics.beginFill(createjs.Graphics.getHSL(Math.random() * 30 - 45, 100, 50 + Math.random() * 30));-->
+            <!--heart.graphics.moveTo(0, -12).curveTo(1, -20, 8, -20).curveTo(16, -20, 16, -10).curveTo(16, 0, 0, 12);-->
+            <!--heart.graphics.curveTo(-16, 0, -16, -10).curveTo(-16, -20, -8, -20).curveTo(-1, -20, 0, -12);-->
+            <!--heart.x = _this.imageContainers[0].width/2;-->
+            <!--heart.y = _this.imageContainers[0].height/2;-->
+
+            <!--return heart;-->
+        <!--};-->
+
+        <!--p._handleImageLoad = function () {-->
+            <!--var _this = this;-->
+
+            <!--var heart = _this._initHeart();-->
+            <!--heart.scaleX = heart.scaleY = Math.random()*10 + 5;-->
+            <!--var con = new createjs.Container();-->
+            <!--con.addChild(heart);-->
+            <!--con.cache(0,0,_this.canvas.width,_this.canvas.clientHeight);-->
+
+
+            <!--var bmp = new createjs.Bitmap(_this.imageContainers[_this.imageIndex++]);-->
+            <!--bmp.filters = [-->
+                    <!--new createjs.AlphaMaskFilter(con.cacheCanvas)-->
+            <!--];-->
+            <!--bmp.cache(0,0,_this.imageContainers[0].width,_this.imageContainers[0].height);-->
+            <!--bmp.x = _this.canvas.width/2-_this.imageContainers[0].width/2;-->
+            <!--bmp.y = _this.canvas.height/2-_this.imageContainers[0].height/2;-->
+
+            <!--var conAll = new createjs.Container();-->
+            <!--conAll.addChild(bmp);-->
+            <!--conAll.cache(0,0,_this.canvas.width,_this.canvas.height);-->
+            <!--conAll.y -= _this.canvas.height;-->
+
+            <!--_this.stage.addChild(conAll);-->
+            <!--console.log(_this.stage.getNumChildren());-->
+
+
+            <!--if(_this.imageIndex == 10) {-->
+                <!--createjs.Ticker.timingMode = createjs.Ticker.RAF;-->
+                <!--createjs.Ticker.addEventListener("tick", _this.__tick.bind(_this));-->
+            <!--}-->
+        <!--};-->
+
+        <!--p.__tick = function () {-->
+            <!--var _this = this;-->
+            <!--var h = _this.canvas.height;-->
+            <!--if(_this.index <= 4500){-->
+                <!--_this.index++;-->
+            <!--}-->
+
+<!--//            var l = _this.stage.getNumChildren();-->
+            <!--var l = _this.index/500;-->
+            <!--for(var i = 0 ; i <= l ; i++){-->
+                <!--var heart = _this.stage.getChildAt(i);-->
+                <!--if (heart.y <= -h) {-->
+                    <!--heart.y = h * (1 + Math.random()) + 50;-->
+                    <!--heart.perX = (1 + Math.random() * 2) * h;-->
+                    <!--heart.offX = Math.random() * h;-->
+                    <!--heart.velY = -Math.random() * 2 - 1;-->
+                    <!--heart._rotation = Math.random() * 20 - 15;-->
+                    <!--heart.compositeOperation = Math.random() < 0.33 ? "lighter" : "source-over";-->
+                <!--}-->
+                <!--var int = (heart.offX + heart.y) / heart.perX * Math.PI * 2;-->
+                <!--heart.y -= Math.random()*2 +1;-->
+                <!--heart.rotation = heart._rotation + Math.sin(int) * 30;-->
+                <!--heart.updateCache("source-over");-->
+            <!--}-->
+
+
+            <!--_this.stage.update();-->
+        <!--};-->
+
+        <!--window.onload = function () {-->
+            <!--new showLove();-->
+        <!--}-->
+    <!--</script>-->
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" style="background-color: #312"></canvas>
+</body>
+</html>
